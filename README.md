@@ -7,3 +7,4 @@ Created this to help me improve my API development skills and also eliminate the
 ## Design
 Here's the initial design created on Figma:
 
+![HobbyAmp Design](assets/images/Hobby_Amp_Design.png)
