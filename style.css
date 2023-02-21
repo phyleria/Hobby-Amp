@@ -54,3 +54,13 @@ button {
     margin-top: 1%;
   
   }
+
+  #result{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 3%;
+    float: right;
+    margin-right: 15%;
+    color: brown;
+    font-weight: 1000;
+  }
