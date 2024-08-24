@@ -1,39 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href='https://fonts.googleapis.com/css?family=Caveat' rel='stylesheet'>
-<style>
-body {
-    font-family: 'Caveat';font-size: 22px;
-}
-</style>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hobby Amp</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f3dc;
+        }
+        .caveat-font {
+            font-family: 'Caveat', cursive;
+        }
+        .comfortaa-font {
+            font-family: 'Comfortaa', sans-serif;
+        }
+    </style>
 </head>
-<div class="Homepage">
-<body style="background-color:beige;">
-    <h1>Hobby Amp</h1>
-</div>
-<div id="Wrapper" class="Wrapper">
-    <div id="left">  
-<img src="https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60">
-</div> 
-<div id="middle">
-<img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60">
-</div>
-<div id="right">
-<img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80">
-</div>
-</div>
-<!--<div id="button">-->
-    <p>Hi Phyllis!<br> Discover where you'll be dining at today &#8595;</p>
-<button id="generate-btn">CAFE</button>
-<!--<button class="cafe">CAFE</button>-->
-<!--</div>-->
-<div id="result"></div>
-<script src="js/main.js" type="module"></script>
+<body>
+    <!-- Header -->
+    <div class="text-center pt-8">
+        <h1 class="text-4xl font-bold caveat-font text-gray-800">Hobby Amp</h1>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center">
+        <div class="w-full md:w-1/2 text-center md:text-left">
+            <h2 class="text-3xl comfortaa-font font-bold text-gray-800 mb-4">Hi Phylis!</h2>
+            <p class="text-gray-600 comfortaa-font mb-8">Discover where you’ll be dining at today...</p>
+            <div>
+                <button id="restaurant-btn" class="bg-[#9e5a0d] text-white py-3 px-6 comfortaa-font rounded-md shadow-md hover:bg-[#a29d82]">Restaurant</button>
+                <button id="cafe-btn" class="bg-[#a29d82] text-white py-3 px-6 comfortaa-font rounded-md hover:bg-[#9e5a0d] ml-4">Cafe</button>
+            </div>
+            <div class="animate-bounce">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-800 mt-14 transform rotate-90 animate-bounce" style="margin-left: 130px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+            <div id="result" class="mt-8" style="margin-left:100px"></div>
+            <div id="confetti" class="mt-8" style="margin-left:90px"></div>
+        </div>
+        <div class="w-full md:w-1/2 mt-8 md:mt-0">
+            <img src="assets/left.jpg" alt="Coffee" class="ml-20 w-[500px] h-[500px] rounded-lg shadow-2xl">
+        </div>
+    </main>
+
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
 </body>
 </html>
