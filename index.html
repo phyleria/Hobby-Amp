@@ -33,20 +33,21 @@
         <div class="w-full md:w-1/2 text-center md:text-left">
             <h2 class="text-3xl comfortaa-font font-bold text-gray-800 mb-4">Hi Phylis!</h2>
             <p class="text-gray-600 comfortaa-font mb-8">Discover where you’ll be dining at today...</p>
-            <div>
+            <div class="flex justify-center md:justify-start">
                 <button id="restaurant-btn" class="bg-[#9e5a0d] text-white py-3 px-6 comfortaa-font rounded-md shadow-md hover:bg-[#a29d82]">Restaurant</button>
                 <button id="cafe-btn" class="bg-[#a29d82] text-white py-3 px-6 comfortaa-font rounded-md hover:bg-[#9e5a0d] ml-4">Cafe</button>
             </div>
-            <div class="animate-bounce">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-800 mt-14 transform rotate-90 animate-bounce" style="margin-left: 130px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="animate-bounce mt-14 hidden md:block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-800 transform rotate-90 animate-bounce" style="margin-left:130px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                 </svg>
             </div>
-            <div id="result" class="mt-8" style="margin-left:100px"></div>
-            <div id="confetti" class="mt-8" style="margin-left:90px"></div>
+            
+            <div id="result" class="mt-8 text-center md:text-left"></div>
+            <div id="confetti" class="mt-8 text-center md:text-left"></div>
         </div>
-        <div class="w-full md:w-1/2 mt-8 md:mt-0">
-            <img src="assets/left.jpg" alt="Coffee" class="ml-20 w-[500px] h-[500px] rounded-lg shadow-2xl">
+        <div class="w-full md:w-1/2 mt-8 md:mt-0 flex justify-center">
+            <img src="assets/left.jpg" alt="Coffee" class="w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-lg shadow-2xl">
         </div>
     </main>
 
