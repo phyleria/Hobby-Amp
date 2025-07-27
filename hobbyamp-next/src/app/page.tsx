@@ -71,9 +71,9 @@ export default function Home() {
       <header className="pt-16 pb-8 px-8">
         <div className={`max-w-2xl mx-auto transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h1 className="text-center text-4xl font-light tracking-tight mb-6">
-            Hey there, where are you dining or relaxing today?
+            Hey there!
           </h1>
-          <p className="text-lg text-gray-600 font-light leading-relaxed">
+          <p className="text-center text-lg text-gray-600 font-light leading-relaxed">
             Choose your preference and discover your next culinary destination.
           </p>
         </div>
