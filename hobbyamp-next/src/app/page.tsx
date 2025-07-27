@@ -69,11 +69,11 @@ export default function Home() {
     <div className="min-h-screen bg-white text-black flex flex-col">
       {/* Header */}
       <header className="pt-16 pb-8 px-8">
-        <div className={`max-w-2xl mx-auto transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h1 className="text-center text-4xl font-light tracking-tight mb-6">
+        <div className={`max-w-2xl mx-auto text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <h1 className="text-4xl font-light tracking-tight mb-6">
             Hey there!
           </h1>
-          <p className="text-center text-lg text-gray-600 font-light leading-relaxed">
+          <p className="text-lg text-gray-600 font-light leading-relaxed">
             Choose your preference and discover your next culinary destination.
           </p>
         </div>
@@ -111,14 +111,14 @@ export default function Home() {
           </button>
 
           <button
-            className="w-full py-6 px-8 bg-black text-white hover:bg-gray-800 transition-all duration-300 group"
+            className="w-full py-6 px-8 bg-amber-900 text-amber-100 hover:bg-amber-800 transition-all duration-300 group"
             onClick={() => displayResult(getRandomChoice([...restaurants, ...cafes]))}
           >
             <div className="text-left">
               <div className="text-lg font-medium mb-1 group-hover:translate-x-2 transition-transform duration-300">
                 Surprise me
               </div>
-              <div className="text-sm text-gray-300">
+              <div className="text-sm text-amber-200">
                 Let us choose for you
               </div>
             </div>
