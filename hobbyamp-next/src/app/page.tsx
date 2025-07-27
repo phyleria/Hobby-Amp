@@ -49,14 +49,25 @@ export default function Home() {
   const displayResult = (place: string) => {
     setResult(place);
     
-    confetti({
-      particleCount: 50,
-      spread: 45,
-      origin: { y: 0.6 },
-      colors: ["#000000", "#333333", "#666666"],
-      gravity: 1,
-      scalar: 0.8,
-    });
+    // Wait for the result to render, then get its position for confetti
+    setTimeout(() => {
+      const resultElement = document.querySelector('.result-text');
+      if (resultElement) {
+        const rect = resultElement.getBoundingClientRect();
+        const x = (rect.left + rect.width / 2) / window.innerWidth;
+        const y = (rect.top + rect.height / 2) / window.innerHeight;
+        
+        confetti({
+          particleCount: 50,
+          spread: 45,
+          origin: { x, y },
+          colors: ["#000000", "#333333", "#666666"],
+          gravity: 1,
+          scalar: 0.8,
+          startVelocity: 30,
+        });
+      }
+    }, 200);
 
     setTimeout(() => setResult(""), 6000);
   };
@@ -66,10 +77,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col">
+    <div className="min-h-screen bg-white text-black">
       {/* Header */}
       <header className="pt-16 pb-8 px-8">
-        <div className={`max-w-2xl mx-auto text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className={`max-w-6xl mx-auto text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h1 className="text-4xl font-light tracking-tight mb-6">
             Hey there!
           </h1>
@@ -79,96 +90,108 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="flex-1 flex flex-col items-center px-8">
-        <div className={`w-full max-w-md space-y-4 mb-16 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <button
-            className="w-full py-6 px-8 border border-gray-200 hover:border-black transition-all duration-300 group"
-            onClick={() => displayResult(getRandomChoice(restaurants))}
-          >
-            <div className="text-left">
-              <div className="text-lg font-medium mb-1 group-hover:translate-x-2 transition-transform duration-300">
-                Restaurant
+      {/* Main Content - Split Layout on Large Screens */}
+      <main className="flex-1 px-8 pb-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            
+            {/* Left Side - Interactive Content */}
+            <div className={`space-y-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              
+              {/* Buttons */}
+              <div className="space-y-4 max-w-md mx-auto lg:mx-0">
+                <button
+                  className="w-full py-6 px-8 border border-gray-200 hover:border-black transition-all duration-300 group"
+                  onClick={() => displayResult(getRandomChoice(restaurants))}
+                >
+                  <div className="text-left">
+                    <div className="text-lg font-medium mb-1 group-hover:translate-x-2 transition-transform duration-300">
+                      Restaurant
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      Fine dining & casual eats
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  className="w-full py-6 px-8 border border-gray-200 hover:border-black transition-all duration-300 group"
+                  onClick={() => displayResult(getRandomChoice(cafes))}
+                >
+                  <div className="text-left">
+                    <div className="text-lg font-medium mb-1 group-hover:translate-x-2 transition-transform duration-300">
+                      Café
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      Coffee & light bites
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  className="w-full py-6 px-8 bg-amber-900 text-amber-100 hover:bg-amber-800 transition-all duration-300 group"
+                  onClick={() => displayResult(getRandomChoice([...restaurants, ...cafes]))}
+                >
+                  <div className="text-left">
+                    <div className="text-lg font-medium mb-1 group-hover:translate-x-2 transition-transform duration-300">
+                      Surprise me
+                    </div>
+                    <div className="text-sm text-amber-200">
+                      Let us choose for you
+                    </div>
+                  </div>
+                </button>
               </div>
-              <div className="text-sm text-gray-500">
-                Fine dining & casual eats
+
+              {/* Result Display */}
+              <div className="flex items-center justify-center h-16 w-full max-w-md mx-auto lg:mx-0">
+                <div className={`text-2xl font-light text-center w-full transition-all duration-500 ${result ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+                  {result && (
+                    <span className="result-text border-b-2 border-black pb-1 inline-block">
+                      {result}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
-          </button>
 
-          <button
-            className="w-full py-6 px-8 border border-gray-200 hover:border-black transition-all duration-300 group"
-            onClick={() => displayResult(getRandomChoice(cafes))}
-          >
-            <div className="text-left">
-              <div className="text-lg font-medium mb-1 group-hover:translate-x-2 transition-transform duration-300">
-                Café
-              </div>
-              <div className="text-sm text-gray-500">
-                Coffee & light bites
+            {/* Right Side - Image Gallery */}
+            <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <div className="relative w-full max-w-lg mx-auto lg:mx-0 lg:max-w-none h-96 lg:h-[500px] overflow-hidden">
+                <div className="relative w-full h-full">
+                  {slides.map((slide, index) => (
+                    <img
+                      key={index}
+                      src={slide}
+                      alt={`Dining atmosphere ${index + 1}`}
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                        index === activeSlide ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    />
+                  ))}
+                </div>
+                
+                {/* Slide Indicators */}
+                <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                  {slides.map((_, index) => (
+                    <button
+                      key={index}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        index === activeSlide ? 'bg-white' : 'bg-white/50'
+                      }`}
+                      onClick={() => setActiveSlide(index)}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
-          </button>
-
-          <button
-            className="w-full py-6 px-8 bg-amber-900 text-amber-100 hover:bg-amber-800 transition-all duration-300 group"
-            onClick={() => displayResult(getRandomChoice([...restaurants, ...cafes]))}
-          >
-            <div className="text-left">
-              <div className="text-lg font-medium mb-1 group-hover:translate-x-2 transition-transform duration-300">
-                Surprise me
-              </div>
-              <div className="text-sm text-amber-200">
-                Let us choose for you
-              </div>
-            </div>
-          </button>
-        </div>
-
-        {/* Result Display */}
-        <div className="h-16 flex items-center justify-center mb-12">
-          <div className={`text-2xl font-light transition-all duration-500 ${result ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-            {result && (
-              <span className="border-b-2 border-black pb-1">
-                {result}
-              </span>
-            )}
-          </div>
-        </div>
-
-        {/* Image Gallery */}
-        <div className={`relative w-full max-w-2xl h-80 overflow-hidden transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="relative w-full h-full">
-            {slides.map((slide, index) => (
-              <img
-                key={index}
-                src={slide}
-                alt={`Dining atmosphere ${index + 1}`}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                  index === activeSlide ? 'opacity-100' : 'opacity-0'
-                }`}
-              />
-            ))}
-          </div>
-          
-          {/* Slide Indicators */}
-          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === activeSlide ? 'bg-white' : 'bg-white/50'
-                }`}
-                onClick={() => setActiveSlide(index)}
-              />
-            ))}
           </div>
         </div>
       </main>
 
       {/* Footer */}
       <footer className="py-8 px-8">
-        <div className={`max-w-2xl mx-auto text-center transition-all duration-1000 delay-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`max-w-6xl mx-auto text-center transition-all duration-1000 delay-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <p className="text-sm text-gray-400 font-light">
             Nairobi's finest dining experiences
           </p>
