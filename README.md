@@ -1,10 +1,3 @@
-# Hobby-Amp
-
 ## Description
-- I always have a hard time deciding on the restaurant/cafe I'll be dining at whenever I go out. 
-- Hobby Amp is a simple project that uses the TripAdvisor API and randomly selects a cafe/restaurant without me deliberating :smile: 
-- Created this to help me improve on API dev
-
-⚠️ Warning
-- Under Maintenance
-
+- I always find it hard to pick a restaurant or café when I go out.
+- Hobby Amp is a small project I made to help with that, I plan to use the TripAdvisor API for more variety of restaraunts and cafes.
